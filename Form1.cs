@@ -17,9 +17,10 @@ namespace DinerOnTheHighway
         public int priceSalades = 0;
         public int priceDeserts = 0;
         public int priceBeverages = 0;
-        public int priceSause = 0;
         public int priceAdditives = 0; public int result = 0;
-     
+        public int priceSause = 0; public int priceJam = 0; public int priceBox = 0;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -99,17 +100,71 @@ namespace DinerOnTheHighway
 
         private void textBox5_Click(object sender, EventArgs e)
         {
-            CheckBox checkBox = (CheckBox)checkBox1;
-            if (checkBox.Checked)
+            int result= 0;
+            CheckBox checkBoxCheese = (CheckBox)checkBox1;
+            CheckBox checkBoxOnion = (CheckBox)checkBox3;
+            CheckBox checkBoxSweet = (CheckBox)checkBox4;
+            if (checkBoxCheese.Checked)
             {
-                textBox5.Text = (Convert.ToInt32(textBox33.Text)).ToString();
-                priceSause = Convert.ToInt32(textBox5.Text);
+                result += Convert.ToInt32(textBox33.Text);
             }
-            else
+            if (checkBoxOnion.Checked)
             {
-                textBox5.Text = 0.ToString();
-                priceSause = 0;
+                result += Convert.ToInt32(textBox38.Text);
             }
+            if (checkBoxSweet.Checked)
+            {
+                result += Convert.ToInt32(textBox39.Text); ;
+            }
+            textBox5.Text = result.ToString();
+            priceSause = result;
+
+        }
+
+        private void textBox46_Click(object sender, EventArgs e)
+        {
+            int result = 0;
+            CheckBox checkBoxJam1 = (CheckBox)checkBox7;
+            CheckBox checkBoxJam2 = (CheckBox)checkBox5;
+            CheckBox checkBoxJam3 = (CheckBox)checkBox6;
+            if (checkBoxJam1.Checked)
+            {
+                result += Convert.ToInt32(textBox43.Text);
+            }
+            if (checkBoxJam2.Checked)
+            {
+                result += Convert.ToInt32(textBox44.Text);
+            }
+            if (checkBoxJam3.Checked)
+            {
+                result += Convert.ToInt32(textBox45.Text); ;
+            }
+            textBox46.Text = result.ToString();
+            priceJam = result;
+
+        }
+
+        private void textBox50_Click(object sender, EventArgs e)
+        {
+            int result = 0;
+            CheckBox checkBoxBox1 = (CheckBox)checkBox10;
+            CheckBox checkBoxBox2 = (CheckBox)checkBox8;
+            CheckBox checkBoxBox3 = (CheckBox)checkBox9;
+            if (checkBoxBox1.Checked)
+            {
+                result += Convert.ToInt32(textBox55.Text);
+            }
+            if (checkBoxBox2.Checked)
+            {
+                result += Convert.ToInt32(textBox54.Text);
+            }
+            if (checkBoxBox3.Checked)
+            {
+                result += Convert.ToInt32(textBox53.Text); ;
+            }
+            textBox50.Text = result.ToString();
+            priceBox = result;
+
         }
 
         private void textBox6_Click(object sender, EventArgs e)
@@ -159,19 +214,13 @@ namespace DinerOnTheHighway
         + priceSause
         + priceAdditives;
 
-            //textBox7.Text = $"Чек:\n " +
-            //    $"Первое блюдо: {textBox1.Text}\n" +
-            //    $"Салаты: {textBox2.Text}\n" +
-            //    $"Десерты: {textBox3.Text}\n" +
-            //    $"Напитки: {textBox4.Text}\n" +
-            //    $"Соусы: {textBox5.Text}\n" +
-            //    $"Добавки к напиткам: {textBox6.Text}\n" +
-            //    $"Итого: {result}"; 
-            using (StreamWriter sr = new StreamWriter(path, true))
+            using (StreamWriter sr = new StreamWriter(path, false))
             {
-                textBox7.Text = $"Чек:\n Первое блюдо: {priceFirstCourse}\n Салаты: {priceSalades}\n Десерты: {priceDeserts}\n +Напитки: {priceBeverages}\n Соусы: {priceSause}\n Добавки к напиткам: {priceAdditives}\n Итого: {result}";
+                textBox7.Text = $"Чек:\n Первое блюдо: {priceFirstCourse}\n Салаты: {priceSalades}\n Десерты: {priceDeserts}\n Напитки: {priceBeverages}\n Соусы: {priceSause}\n " +
+                    $"Добавки к напиткам: {priceAdditives}\n Джем: {priceJam}\n Контейнеры для еды: {priceBox} Итого: {result}";
 
-                sr.WriteLine($"Чек:\n Первое блюдо: {priceFirstCourse}\n Салаты: {priceSalades}\n Десерты: {priceDeserts}\n Напитки: {priceBeverages}\n Соусы: {priceSause}\n Добавки к напиткам: {priceAdditives}\n Итого: {result}"
+                sr.WriteLine($"Чек:\n Первое блюдо: {priceFirstCourse}\n Салаты: {priceSalades}\n Десерты: {priceDeserts}\n " +
+                    $"Напитки: {priceBeverages}\n Соусы: {priceSause}\n Добавки к напиткам: {priceAdditives}\n Джем: {priceJam}\n Контейнеры для еды: {priceBox} \nИтого: {result}"
 );
             }
 
